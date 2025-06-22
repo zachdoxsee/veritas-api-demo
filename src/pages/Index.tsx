@@ -191,76 +191,15 @@ const Index = () => {
           )}
         </main>
         
-        {/* AI Ethics Warning Section */}
-        <section className="max-w-5xl mx-auto px-6 py-12">
-          <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-l-amber-500 rounded-2xl shadow-xl p-8 relative overflow-hidden">
-            {/* Subtle warning pattern background */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-100/20 rounded-full -translate-y-16 translate-x-16"></div>
-            <div className="absolute bottom-0 left-0 w-20 h-20 bg-orange-100/20 rounded-full translate-y-10 -translate-x-10"></div>
-            
-            <div className="relative z-10">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="bg-amber-100 p-2 rounded-lg">
-                  <AlertTriangle className="w-6 h-6 text-amber-600" />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900">
-                  Important: AI Analysis Limitations
-                </h3>
-              </div>
-              
-              <div className="space-y-4 text-slate-700">
-                <p className="text-lg font-medium text-amber-800 mb-4">
-                  This platform uses artificial intelligence for political analysis and should be used with critical awareness of its limitations.
-                </p>
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <div className="flex items-start space-x-3">
-                      <Info className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-slate-900 mb-1">AI Training Bias</h4>
-                        <p className="text-sm">AI models reflect biases present in their training data, which may include political, cultural, or temporal biases that could affect analysis accuracy.</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start space-x-3">
-                      <Info className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-slate-900 mb-1">Context Limitations</h4>
-                        <p className="text-sm">AI analysis may miss nuanced political contexts, evolving positions, or the full complexity of political decision-making processes.</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div className="flex items-start space-x-3">
-                      <Info className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-slate-900 mb-1">Fact-Checking Required</h4>
-                        <p className="text-sm">All findings should be independently verified through primary sources, official records, and professional journalism before making important decisions.</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start space-x-3">
-                      <Info className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-slate-900 mb-1">Educational Purpose</h4>
-                        <p className="text-sm">This tool is designed for educational exploration and should not be the sole basis for voting decisions or political judgments.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="bg-white/70 rounded-lg p-4 mt-6 border border-amber-200">
-                  <p className="text-sm text-slate-600 text-center">
-                    <strong className="text-slate-900">Recommendation:</strong> Use this analysis as a starting point for further research, 
-                    always cross-reference with multiple sources, and engage in critical thinking about political information.
-                  </p>
-                </div>
-              </div>
-            </div>
+        {/* Simple AI Disclaimer */}
+        <div className="max-w-5xl mx-auto px-6 py-6">
+          <div className="bg-amber-50/80 backdrop-blur-sm border border-amber-200 rounded-lg p-3 text-center">
+            <p className="text-sm text-amber-800 flex items-center justify-center space-x-2">
+              <AlertTriangle className="w-4 h-4" />
+              <span>AI analysis results should be independently verified and are subject to inherent limitations and biases.</span>
+            </p>
           </div>
-        </section>
+        </div>
         
         <footer className="bg-slate-900/95 backdrop-blur-sm text-slate-400 py-12 mt-8 relative">
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
