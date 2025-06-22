@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
@@ -106,27 +105,11 @@ const Index = () => {
         />
       </div>
       
-      {/* Courthouse/Justice themed background elements */}
-      <div className="absolute top-20 right-10 w-64 h-64 opacity-[0.03]">
-        <svg viewBox="0 0 24 24" className="w-full h-full text-slate-800">
-          <path fill="currentColor" d="M7 21q-.825 0-1.413-.588T5 19V9q0-.825.588-1.413T7 7h1V5q0-2.075 1.463-3.538T13 0q2.075 0 3.538 1.462T18 5v2h1q.825 0 1.413.587T21 9v10q0 .825-.588 1.412T19 21H7Zm6-4q.825 0 1.413-.588T15 15q0-.825-.588-1.413T13 13q-.825 0-1.413.587T11 15q0 .825.587 1.412T13 17Zm-3-10h6V5q0-1.25-.875-2.125T13 2q-1.25 0-2.125.875T10 5v2Z"/>
-        </svg>
-      </div>
-      
       {/* Constitutional/scales of justice background */}
       <div className="absolute bottom-20 left-10 w-48 h-48 opacity-[0.02]">
         <svg viewBox="0 0 24 24" className="w-full h-full text-blue-800">
           <path fill="currentColor" d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L12 1L3 7V9C3 10.1 3.9 11 5 11V22H19V11C20.1 11 21 10.1 21 9ZM7 13V19H9V13H7ZM11 13V19H13V13H11ZM15 13V19H17V13H15Z"/>
         </svg>
-      </div>
-
-      {/* Subtle American flag stripes */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div className="w-full h-2 bg-red-600 absolute top-20"></div>
-        <div className="w-full h-2 bg-red-600 absolute top-28"></div>
-        <div className="w-full h-2 bg-red-600 absolute top-36"></div>
-        <div className="w-full h-2 bg-red-600 absolute top-44"></div>
-        <div className="w-full h-2 bg-red-600 absolute top-52"></div>
       </div>
 
       <div className="relative z-10">
