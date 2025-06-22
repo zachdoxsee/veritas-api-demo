@@ -211,6 +211,9 @@ const Index = () => {
                 <p className="text-xs text-slate-500">
                   Built for journalists, researchers, and citizens seeking political transparency
                 </p>
+                <p className="text-xs text-slate-500 mt-1">
+                  Created by Zach Doxsee
+                </p>
               </div>
             </div>
           </div>
