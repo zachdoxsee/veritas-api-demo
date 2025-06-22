@@ -121,13 +121,13 @@ const Index = () => {
             <div className="space-y-8">
               <div className="text-center mt-4">
                 <div className="relative inline-block">
-                  <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 mb-2 sm:mb-4 relative z-10 font-inter leading-tight">
+                  <h2 className="text-3xl sm:text-4xl font-extrabold sm:font-bold text-slate-900 mb-3 sm:mb-4 relative z-10 font-inter leading-tight">
                     Political Statement Analysis
                   </h2>
                 </div>
-                <p className="text-base sm:text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 font-inter">
-                  Cross-reference political statements with voting records, campaign finance data, and past positions 
-                  to detect contradictions, hypocrisy, and verify consistency in political rhetoric.
+                <p className="text-base sm:text-lg text-slate-700 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 font-inter">
+                  Cross-reference political statements with voting records and past positions 
+                  to detect contradictions and verify consistency in political statements.
                 </p>
               </div>
               
