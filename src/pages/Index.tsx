@@ -1,11 +1,11 @@
-
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
 import AnalysisResult from '@/components/AnalysisResult';
+import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { AlertTriangle, Info } from 'lucide-react';
+import { AlertTriangle, Info, Bot } from 'lucide-react';
 
 interface AnalysisData {
   statement: string;
@@ -125,10 +125,14 @@ const Index = () => {
                     Political Statement Analysis
                   </h2>
                 </div>
-                <p className="text-base sm:text-lg text-slate-700 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 font-inter">
+                <p className="text-base sm:text-lg text-slate-700 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed mb-4 sm:mb-6 font-inter">
                   Cross-reference political statements with voting records and past positions 
                   to detect contradictions and verify consistency in political statements.
                 </p>
+                <Badge variant="outline" className="bg-slate-50 text-slate-600 border-slate-200 text-xs">
+                  <Bot className="w-3 h-3 mr-1" />
+                  Powered by AI
+                </Badge>
               </div>
               
               <StatementInput onAnalyze={handleAnalyze} isAnalyzing={isAnalyzing} />
