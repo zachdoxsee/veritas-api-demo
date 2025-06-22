@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
@@ -97,11 +98,11 @@ const Index = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50/30 via-blue-50/10 to-red-50/5"></div>
       
       {/* Aerial government building background image with surrounding landscape */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-60">
         <img 
           src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
           alt="Aerial view of government building with surrounding landscape"
-          className="w-full h-full object-cover grayscale brightness-105 contrast-95 hue-rotate-[200deg] saturate-50"
+          className="w-full h-full object-cover grayscale-[0.4] brightness-105 contrast-95 hue-rotate-[200deg] saturate-75"
         />
       </div>
       
@@ -114,14 +115,6 @@ const Index = () => {
 
       <div className="relative z-10">
         <Header />
-        
-        {/* AI Badge */}
-        <div className="flex justify-center pt-4 pb-2">
-          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600/90 to-purple-600/90 backdrop-blur-sm text-white text-sm font-medium rounded-full shadow-lg border border-white/20">
-            <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-            Powered by Advanced AI
-          </div>
-        </div>
         
         <main className="max-w-5xl mx-auto px-6 pt-6">
           {!analyzedData ? (
