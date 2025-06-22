@@ -221,30 +221,55 @@ const AnalysisResult = ({ statement, speaker, date, aiAnalysis }: AnalysisResult
         <div className="space-y-3">
           {aiAnalysis?.supportingEvidence && aiAnalysis.supportingEvidence.length > 0 ? (
             aiAnalysis.supportingEvidence.map((evidence, index) => (
-              <div key={index} className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-blue-200">
-                <ExternalLink className="w-4 h-4 text-blue-600" />
+              <div key={index} className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors">
+                <ExternalLink className="w-4 h-4 text-blue-600 flex-shrink-0" />
                 <div className="flex-1">
-                  <span className="text-blue-700 font-medium">{evidence.title}</span>
+                  {evidence.url ? (
+                    <a 
+                      href={evidence.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-700 font-medium hover:text-blue-900 hover:underline transition-colors"
+                    >
+                      {evidence.title}
+                    </a>
+                  ) : (
+                    <span className="text-blue-700 font-medium">{evidence.title}</span>
+                  )}
                   <p className="text-slate-600 text-sm">{evidence.description}</p>
                   <p className="text-slate-500 text-xs mt-1">Source: {evidence.source}</p>
                 </div>
               </div>
             ))
           ) : isDemo ? (
-            // Demo evidence
+            // Demo evidence with clickable links
             <>
               <div className="flex items-center space-x-3 p-4 bg-white rounded-lg hover:bg-blue-50 transition-colors border border-blue-200">
-                <ExternalLink className="w-4 h-4 text-blue-600" />
+                <ExternalLink className="w-4 h-4 text-blue-600 flex-shrink-0" />
                 <div className="flex-1">
-                  <span className="text-blue-700 font-medium">H.R. 2640 - Border Security Enhancement Act (2023)</span>
+                  <a 
+                    href="https://congress.gov" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-700 font-medium hover:text-blue-900 hover:underline transition-colors"
+                  >
+                    H.R. 2640 - Border Security Enhancement Act (2023)
+                  </a>
                   <p className="text-slate-600 text-sm">Congress.gov - Voted NAY on July 26, 2023</p>
                 </div>
               </div>
               
               <div className="flex items-center space-x-3 p-4 bg-white rounded-lg hover:bg-blue-50 transition-colors border border-blue-200">
-                <ExternalLink className="w-4 h-4 text-blue-600" />
+                <ExternalLink className="w-4 h-4 text-blue-600 flex-shrink-0" />
                 <div className="flex-1">
-                  <span className="text-blue-700 font-medium">Private Prison Industry Donations: $340,000 (2022-2024)</span>
+                  <a 
+                    href="https://opensecrets.org" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-700 font-medium hover:text-blue-900 hover:underline transition-colors"
+                  >
+                    Private Prison Industry Donations: $340,000 (2022-2024)
+                  </a>
                   <p className="text-slate-600 text-sm">OpenSecrets.org - Top contributor: CoreCivic PAC</p>
                 </div>
               </div>

@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
@@ -151,7 +149,7 @@ const Index = () => {
               
               {isAnalyzing && (
                 <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-slate-200 p-8 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 animate-pulse"></div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-white to-blue-600 animate-pulse"></div>
                   <div className="flex items-center justify-center space-x-4">
                     <div className="relative">
                       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
@@ -223,4 +221,3 @@ const Index = () => {
 };
 
 export default Index;
-
