@@ -5,29 +5,29 @@ import { Scale, Shield } from 'lucide-react';
 const Header = () => {
   return (
     <header className="bg-slate-900 border-b border-slate-700 shadow-lg">
-      <div className="max-w-6xl mx-auto px-6 py-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
         {/* Mobile Layout */}
         <div className="block sm:hidden">
-          <div className="text-center space-y-3">
-            {/* Icon and Title */}
-            <div className="flex items-center justify-center space-x-3">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <Scale className="w-6 h-6 text-white" />
+          <div className="space-y-2">
+            {/* Main title row */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="bg-blue-600 p-1.5 rounded-lg">
+                  <Scale className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold text-white">Veritas</h1>
+                  <p className="text-xs text-slate-300 italic">We Remember Everything</p>
+                </div>
               </div>
-              <div>
-                <h1 className="text-2xl font-bold text-white">Veritas</h1>
-                <p className="text-sm font-semibold italic text-white">We Remember Everything</p>
+              <div className="flex items-center space-x-1 text-slate-400">
+                <Shield className="w-3 h-3" />
+                <span className="text-xs">DEMO</span>
               </div>
             </div>
             
-            {/* Subtitle */}
-            <p className="text-slate-400 text-sm">Political Accountability Platform</p>
-            
-            {/* Prototype Badge */}
-            <div className="flex items-center justify-center space-x-2 text-slate-400">
-              <Shield className="w-4 h-4" />
-              <span className="text-sm">PROTOTYPE DEMO</span>
-            </div>
+            {/* Subtitle row */}
+            <p className="text-slate-400 text-sm text-center">Political Accountability Platform</p>
           </div>
         </div>
 
