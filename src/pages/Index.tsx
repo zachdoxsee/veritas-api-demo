@@ -138,7 +138,6 @@ const Index = () => {
                   <h2 className="text-4xl font-bold text-slate-900 mb-6 relative z-10">
                     Political Statement Verification
                   </h2>
-                  <div className="absolute -bottom-2 -right-2 w-3 h-3 bg-red-600 rounded-full opacity-20"></div>
                 </div>
                 <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed mb-8">
                   Cross-reference political statements with voting records, campaign finance data, and past positions 
