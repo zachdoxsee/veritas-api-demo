@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
@@ -195,12 +194,7 @@ const Index = () => {
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center space-y-4">
-              <div className="flex items-center justify-center space-x-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-red-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">V</span>
-                </div>
-                <h3 className="text-xl font-bold text-white">Veritas</h3>
-              </div>
+              <h3 className="text-xl font-bold text-white">Veritas</h3>
               <p className="text-slate-300 font-medium">
                 AI-Powered Political Accountability Platform
               </p>
