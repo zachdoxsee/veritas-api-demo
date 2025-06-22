@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
@@ -96,11 +97,11 @@ const Index = () => {
       {/* Background with American Flag motif - reduced opacity to not compete with image */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50/30 via-blue-50/10 to-red-50/5"></div>
       
-      {/* Government building background image - center-focused with blue filter */}
+      {/* Aerial government building background image with surrounding landscape */}
       <div className="absolute inset-0 opacity-60">
         <img 
-          src="https://images.unsplash.com/photo-1551038247-3d9af20df552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3857&q=80"
-          alt="Government building"
+          src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+          alt="Aerial view of government building with surrounding landscape"
           className="w-full h-full object-cover grayscale-[0.4] brightness-105 contrast-95 hue-rotate-[200deg] saturate-75"
         />
       </div>
