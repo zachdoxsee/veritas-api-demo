@@ -1,52 +1,184 @@
 
 import React, { useState } from 'react';
-import { Search, Sparkles } from 'lucide-react';
+import { Search, Sparkles, Upload, Calendar, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 interface StatementInputProps {
-  onAnalyze: (statement: string) => void;
+  onAnalyze: (data: {
+    statement: string;
+    speaker: string;
+    date: string;
+    source: 'text' | 'file';
+  }) => void;
   isAnalyzing: boolean;
 }
 
 const StatementInput = ({ onAnalyze, isAnalyzing }: StatementInputProps) => {
   const [statement, setStatement] = useState('');
+  const [speaker, setSpeaker] = useState('');
+  const [date, setDate] = useState('');
+  const [inputMethod, setInputMethod] = useState<'text' | 'file'>('text');
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
-  const demoStatement = `"I've always been a champion of working families and will fight against corporate greed. The wealthy need to pay their fair share!" - @SenatorDemo, March 15, 2024`;
+  const demoStatement = `"We need to secure our border and stop the flow of drugs into our communities. I've always been tough on crime and will continue to fight for law and order." - Senator Johnson, March 15, 2024`;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (statement.trim()) {
-      onAnalyze(statement);
+    const finalStatement = inputMethod === 'file' && uploadedFile 
+      ? `[File: ${uploadedFile.name}] ${statement}` 
+      : statement;
+      
+    if (finalStatement.trim() && speaker.trim()) {
+      onAnalyze({
+        statement: finalStatement,
+        speaker: speaker.trim(),
+        date: date || new Date().toISOString().split('T')[0],
+        source: inputMethod
+      });
     }
   };
 
   const useDemoStatement = () => {
     setStatement(demoStatement);
+    setSpeaker('Senator Johnson');
+    setDate('2024-03-15');
+    setInputMethod('text');
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setUploadedFile(file);
+      setStatement(`Uploaded file: ${file.name}`);
+    }
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-8">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-slate-900 mb-2">🎯 Statement Analysis</h2>
-        <p className="text-slate-600">Paste a political tweet, quote, or public statement to analyze for consistency with past behavior.</p>
+    <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-slate-300/50 p-8 relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-100/30 to-transparent rounded-full -translate-y-16 translate-x-16"></div>
+      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-red-100/30 to-transparent rounded-full translate-y-12 -translate-x-12"></div>
+      
+      <div className="mb-6 relative z-10">
+        <h2 className="text-3xl font-bold text-slate-900 mb-3 flex items-center">
+          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center mr-3">
+            <Search className="w-5 h-5 text-white" />
+          </div>
+          Statement Analysis
+        </h2>
+        <p className="text-slate-700 leading-relaxed">
+          Upload or paste a political statement, tweet, or public quote to analyze for consistency with past behavior and voting records.
+        </p>
       </div>
       
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+        {/* Input Method Toggle */}
+        <div className="flex space-x-2 bg-slate-100 p-1 rounded-lg">
+          <button
+            type="button"
+            onClick={() => setInputMethod('text')}
+            className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
+              inputMethod === 'text'
+                ? 'bg-white text-slate-900 shadow-sm'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            Text Input
+          </button>
+          <button
+            type="button"
+            onClick={() => setInputMethod('file')}
+            className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
+              inputMethod === 'file'
+                ? 'bg-white text-slate-900 shadow-sm'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            File Upload
+          </button>
+        </div>
+
+        {/* Speaker Input */}
         <div>
-          <textarea
-            value={statement}
-            onChange={(e) => setStatement(e.target.value)}
-            placeholder="Paste the political statement, tweet, or quote here..."
-            className="w-full h-32 p-4 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none text-slate-900 placeholder-slate-500"
+          <Label htmlFor="speaker" className="text-slate-700 font-medium mb-2 flex items-center">
+            <User className="w-4 h-4 mr-2" />
+            Speaker/Politician Name *
+          </Label>
+          <Input
+            id="speaker"
+            value={speaker}
+            onChange={(e) => setSpeaker(e.target.value)}
+            placeholder="e.g., Senator John Smith, Rep. Jane Doe"
+            className="border-slate-300 focus:border-blue-500 focus:ring-blue-500"
+            required
           />
         </div>
+
+        {/* Date Input */}
+        <div>
+          <Label htmlFor="date" className="text-slate-700 font-medium mb-2 flex items-center">
+            <Calendar className="w-4 h-4 mr-2" />
+            Statement Date (Optional)
+          </Label>
+          <Input
+            id="date"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            className="border-slate-300 focus:border-blue-500 focus:ring-blue-500"
+          />
+        </div>
+
+        {/* Statement Input */}
+        <div>
+          <Label className="text-slate-700 font-medium mb-2 block">
+            Statement Content *
+          </Label>
+          
+          {inputMethod === 'text' ? (
+            <textarea
+              value={statement}
+              onChange={(e) => setStatement(e.target.value)}
+              placeholder="Paste the political statement, tweet, or quote here..."
+              className="w-full h-32 p-4 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none text-slate-900 placeholder-slate-500"
+              required
+            />
+          ) : (
+            <div className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors">
+              <Upload className="w-8 h-8 text-slate-400 mx-auto mb-3" />
+              <input
+                type="file"
+                onChange={handleFileUpload}
+                accept=".txt,.pdf,.doc,.docx,image/*"
+                className="hidden"
+                id="file-upload"
+              />
+              <Label htmlFor="file-upload" className="cursor-pointer">
+                <span className="text-blue-600 hover:text-blue-700 font-medium">
+                  Click to upload
+                </span>
+                <span className="text-slate-600"> or drag and drop</span>
+              </Label>
+              <p className="text-xs text-slate-500 mt-2">
+                Supports text files, PDFs, documents, and images
+              </p>
+              {uploadedFile && (
+                <p className="text-sm text-green-600 mt-2">
+                  ✓ {uploadedFile.name}
+                </p>
+              )}
+            </div>
+          )}
+        </div>
         
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between pt-4">
           <Button
             type="button"
             variant="outline"
             onClick={useDemoStatement}
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-2 border-slate-300 hover:bg-slate-50"
           >
             <Sparkles className="w-4 h-4" />
             <span>Try Demo Statement</span>
@@ -54,8 +186,8 @@ const StatementInput = ({ onAnalyze, isAnalyzing }: StatementInputProps) => {
           
           <Button
             type="submit"
-            disabled={!statement.trim() || isAnalyzing}
-            className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700"
+            disabled={!statement.trim() || !speaker.trim() || isAnalyzing}
+            className="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-2.5"
           >
             <Search className="w-4 h-4" />
             <span>{isAnalyzing ? 'Analyzing...' : 'Analyze Statement'}</span>

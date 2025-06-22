@@ -4,77 +4,166 @@ import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
 import AnalysisResult from '@/components/AnalysisResult';
 
+interface AnalysisData {
+  statement: string;
+  speaker: string;
+  date: string;
+  source: 'text' | 'file';
+}
+
 const Index = () => {
-  const [analyzedStatement, setAnalyzedStatement] = useState<string | null>(null);
+  const [analyzedData, setAnalyzedData] = useState<AnalysisData | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
-  const handleAnalyze = async (statement: string) => {
+  const handleAnalyze = async (data: AnalysisData) => {
     setIsAnalyzing(true);
     // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setAnalyzedStatement(statement);
+    await new Promise(resolve => setTimeout(resolve, 2500));
+    setAnalyzedData(data);
     setIsAnalyzing(false);
   };
 
   const handleNewAnalysis = () => {
-    setAnalyzedStatement(null);
+    setAnalyzedData(null);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      <Header />
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Background with American Flag motif */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-red-50/20"></div>
       
-      <main className="max-w-4xl mx-auto px-6 py-8">
-        {!analyzedStatement ? (
-          <div className="space-y-8">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                Political Statement Analysis
-              </h2>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Detect contradictions, hypocrisy, and misalignment between political rhetoric 
-                and actual voting records, donor history, and past statements.
-              </p>
-            </div>
-            
-            <StatementInput onAnalyze={handleAnalyze} isAnalyzing={isAnalyzing} />
-            
-            {isAnalyzing && (
-              <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-8">
-                <div className="flex items-center justify-center space-x-3">
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-                  <span className="text-slate-700">Analyzing statement against voting records, donations, and past statements...</span>
+      {/* Courthouse/Justice themed background elements */}
+      <div className="absolute top-20 right-10 w-64 h-64 opacity-[0.03]">
+        <svg viewBox="0 0 24 24" className="w-full h-full text-slate-800">
+          <path fill="currentColor" d="M7 21q-.825 0-1.413-.588T5 19V9q0-.825.588-1.413T7 7h1V5q0-2.075 1.463-3.538T13 0q2.075 0 3.538 1.462T18 5v2h1q.825 0 1.413.587T21 9v10q0 .825-.588 1.412T19 21H7Zm6-4q.825 0 1.413-.588T15 15q0-.825-.588-1.413T13 13q-.825 0-1.413.587T11 15q0 .825.587 1.412T13 17Zm-3-10h6V5q0-1.25-.875-2.125T13 2q-1.25 0-2.125.875T10 5v2Z"/>
+        </svg>
+      </div>
+      
+      {/* Constitutional/scales of justice background */}
+      <div className="absolute bottom-20 left-10 w-48 h-48 opacity-[0.02]">
+        <svg viewBox="0 0 24 24" className="w-full h-full text-blue-800">
+          <path fill="currentColor" d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L12 1L3 7V9C3 10.1 3.9 11 5 11V22H19V11C20.1 11 21 10.1 21 9ZM7 13V19H9V13H7ZM11 13V19H13V13H11ZM15 13V19H17V13H15Z"/>
+        </svg>
+      </div>
+
+      {/* Subtle American flag stripes */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="w-full h-2 bg-red-600 absolute top-20"></div>
+        <div className="w-full h-2 bg-red-600 absolute top-28"></div>
+        <div className="w-full h-2 bg-red-600 absolute top-36"></div>
+        <div className="w-full h-2 bg-red-600 absolute top-44"></div>
+        <div className="w-full h-2 bg-red-600 absolute top-52"></div>
+      </div>
+
+      <div className="relative z-10">
+        <Header />
+        
+        <main className="max-w-5xl mx-auto px-6 py-8">
+          {!analyzedData ? (
+            <div className="space-y-8">
+              <div className="text-center py-8">
+                <div className="relative inline-block">
+                  <h2 className="text-4xl font-bold text-slate-900 mb-6 relative z-10">
+                    Political Statement Verification
+                  </h2>
+                  <div className="absolute -top-2 -left-2 w-4 h-4 bg-blue-600 rounded-full opacity-20"></div>
+                  <div className="absolute -bottom-2 -right-2 w-3 h-3 bg-red-600 rounded-full opacity-20"></div>
+                </div>
+                <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed">
+                  Cross-reference political statements with voting records, campaign finance data, and past positions 
+                  to detect contradictions, hypocrisy, and verify consistency in political rhetoric.
+                </p>
+                <div className="mt-6 flex items-center justify-center space-x-8 text-sm text-slate-500">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                    <span>ProPublica Congress API</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                    <span>OpenSecrets Database</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                    <span>Verified Sources</span>
+                  </div>
                 </div>
               </div>
-            )}
-          </div>
-        ) : (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-slate-900">Analysis Complete</h2>
-              <button
-                onClick={handleNewAnalysis}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                New Analysis
-              </button>
+              
+              <StatementInput onAnalyze={handleAnalyze} isAnalyzing={isAnalyzing} />
+              
+              {isAnalyzing && (
+                <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-slate-200 p-8 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 animate-pulse"></div>
+                  <div className="flex items-center justify-center space-x-4">
+                    <div className="relative">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                      <div className="absolute inset-0 animate-ping rounded-full h-8 w-8 border border-blue-400 opacity-25"></div>
+                    </div>
+                    <div className="text-slate-700">
+                      <div className="font-medium">Analyzing statement...</div>
+                      <div className="text-sm text-slate-500">Cross-referencing voting records, donations, and past statements</div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-            
-            <AnalysisResult statement={analyzedStatement} />
+          ) : (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+                <div>
+                  <h2 className="text-2xl font-bold text-slate-900">Analysis Complete</h2>
+                  <p className="text-slate-600 mt-1">
+                    Analyzed statement by {analyzedData.speaker} • {analyzedData.date}
+                  </p>
+                </div>
+                <button
+                  onClick={handleNewAnalysis}
+                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                >
+                  New Analysis
+                </button>
+              </div>
+              
+              <AnalysisResult 
+                statement={analyzedData.statement} 
+                speaker={analyzedData.speaker}
+                date={analyzedData.date}
+              />
+            </div>
+          )}
+        </main>
+        
+        <footer className="bg-slate-900/95 backdrop-blur-sm text-slate-400 py-12 mt-20 relative">
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="text-center space-y-4">
+              <div className="flex items-center justify-center space-x-3">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-red-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">V</span>
+                </div>
+                <h3 className="text-xl font-bold text-white">Veritas</h3>
+              </div>
+              <p className="text-slate-300 font-medium">
+                Political Accountability & Fact-Checking Platform
+              </p>
+              <div className="max-w-2xl mx-auto text-sm leading-relaxed">
+                <p className="mb-2">
+                  <strong className="text-slate-200">Prototype Demonstration</strong> - Real-time political statement verification
+                </p>
+                <p>
+                  Powered by: ProPublica Congress API • OpenSecrets Campaign Finance Database • 
+                  Verified Social Media Archives • Public Records Database
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-700">
+                <p className="text-xs text-slate-500">
+                  Built for journalists, researchers, and citizens seeking political transparency
+                </p>
+              </div>
+            </div>
           </div>
-        )}
-      </main>
-      
-      <footer className="bg-slate-900 text-slate-400 py-8 mt-16">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="mb-2">
-            <strong className="text-white">Veritas</strong> - Political Accountability Platform
-          </p>
-          <p className="text-sm">
-            This is a prototype demonstration. Data sources: ProPublica API, OpenSecrets API, Social Media Archives
-          </p>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   );
 };
