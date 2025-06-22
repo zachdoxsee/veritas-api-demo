@@ -12,7 +12,13 @@ const Header = () => {
               <div className="bg-blue-600 p-2 rounded-lg">
                 <Scale className="w-6 h-6 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-white">Veritas | We Remember Everything</h1>
+              {/* Mobile: Two-line title */}
+              <div className="block sm:hidden">
+                <h1 className="text-2xl font-bold text-white">Veritas</h1>
+                <p className="text-lg font-semibold italic text-white">We Remember Everything</p>
+              </div>
+              {/* Desktop: Single-line title */}
+              <h1 className="hidden sm:block text-2xl font-bold text-white">Veritas | We Remember Everything</h1>
             </div>
             <div className="sm:ml-0">
               <p className="text-slate-400 text-sm">Political Accountability Platform</p>
