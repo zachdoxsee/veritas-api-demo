@@ -114,10 +114,27 @@ const AnalysisResult = ({ statement, speaker, date, aiAnalysis }: AnalysisResult
 
       {/* Contradiction Check */}
       <Card className="p-6">
-        <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center">
-          <Scale className="w-5 h-5 mr-2" />
-          Contradiction Analysis
-        </h3>
+        <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 mb-4">
+          <h3 className="text-lg font-semibold text-slate-900 flex items-center">
+            <Scale className="w-5 h-5 mr-2" />
+            Contradiction Analysis
+          </h3>
+          <span className={`px-4 py-2 rounded-full text-sm font-medium flex items-center w-full sm:w-auto justify-center sm:justify-start ${
+            aiAnalysis?.overallAssessment.hasContradictions ? getConfidenceColor(aiAnalysis.overallAssessment.confidenceLevel) : (isDemo ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800')
+          }`}>
+            {(aiAnalysis?.overallAssessment.hasContradictions || isDemo) ? (
+              <>
+                <AlertTriangle className="w-4 h-4 mr-1" />
+                CONTRADICTIONS FOUND
+              </>
+            ) : (
+              <>
+                <CheckCircle className="w-4 h-4 mr-1" />
+                NO MAJOR ISSUES
+              </>
+            )}
+          </span>
+        </div>
         
         <div className="space-y-4">
           {aiAnalysis?.contradictions && aiAnalysis.contradictions.length > 0 ? (
@@ -182,21 +199,6 @@ const AnalysisResult = ({ statement, speaker, date, aiAnalysis }: AnalysisResult
         </h3>
         <div className="space-y-3">
           <div className="flex items-center space-x-3">
-            <span className={`px-4 py-2 rounded-full text-sm font-medium flex items-center ${
-              aiAnalysis?.overallAssessment.hasContradictions ? getConfidenceColor(aiAnalysis.overallAssessment.confidenceLevel) : 'bg-red-100 text-red-800'
-            }`}>
-              {(aiAnalysis?.overallAssessment.hasContradictions || isDemo) ? (
-                <>
-                  <AlertTriangle className="w-4 h-4 mr-1" />
-                  CONTRADICTIONS FOUND
-                </>
-              ) : (
-                <>
-                  <CheckCircle className="w-4 h-4 mr-1" />
-                  NO MAJOR ISSUES
-                </>
-              )}
-            </span>
             <span className="text-slate-600">
               Confidence: {aiAnalysis?.overallAssessment.confidenceLevel || 'High'} ({aiAnalysis?.overallAssessment.confidencePercentage || 92}%)
             </span>
