@@ -16,7 +16,7 @@ const Header = () => {
                   <Scale className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-white font-playfair">Veritas</h1>
+                  <h1 className="text-xl font-bold text-white font-inter">Veritas</h1>
                   <p className="text-xs text-slate-300 italic font-inter">We Remember Everything</p>
                 </div>
               </div>
@@ -38,7 +38,7 @@ const Header = () => {
               <div className="bg-blue-600 p-2 rounded-lg">
                 <Scale className="w-6 h-6 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-white font-playfair">Veritas | We Remember Everything</h1>
+              <h1 className="text-2xl font-bold text-white font-inter">Veritas | We Remember Everything</h1>
             </div>
             <p className="text-slate-400 text-sm font-inter">Political Accountability Platform</p>
           </div>
