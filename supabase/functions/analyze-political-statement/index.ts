@@ -26,7 +26,7 @@ STATEMENT: "${statement}"
 SPEAKER: ${speaker}
 DATE: ${date}
 
-Please provide a comprehensive analysis in the following JSON format:
+Please provide a comprehensive analysis in the following JSON format (respond with ONLY the JSON, no markdown formatting):
 
 {
   "intentSummary": "Brief summary of the speaker's intent and positioning",
@@ -63,7 +63,9 @@ Focus on:
 4. Policy flip-flops or position changes over time
 5. Rhetorical techniques used to obscure or mislead
 
-Be factual, objective, and provide specific examples where possible. If you cannot find contradictions, state that clearly.`;
+Be factual, objective, and provide specific examples where possible. If you cannot find contradictions, state that clearly.
+
+IMPORTANT: Respond with ONLY the JSON object, no markdown code blocks or additional text.`;
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -74,7 +76,7 @@ Be factual, objective, and provide specific examples where possible. If you cann
       body: JSON.stringify({
         model: 'gpt-4o-mini',
         messages: [
-          { role: 'system', content: 'You are an expert political analyst and fact-checker with access to comprehensive political databases. Provide thorough, objective analysis based on factual information.' },
+          { role: 'system', content: 'You are an expert political analyst and fact-checker. You must respond with valid JSON only, no markdown formatting or code blocks.' },
           { role: 'user', content: prompt }
         ],
         temperature: 0.3,
@@ -87,15 +89,37 @@ Be factual, objective, and provide specific examples where possible. If you cann
     }
 
     const data = await response.json();
+    let rawContent = data.choices[0].message.content;
+    
+    console.log('Raw AI response:', rawContent);
+
     let analysisResult;
 
     try {
-      analysisResult = JSON.parse(data.choices[0].message.content);
+      // Clean the response - remove markdown code blocks if present
+      let cleanedContent = rawContent.trim();
+      
+      // Remove markdown code blocks
+      if (cleanedContent.startsWith('```json')) {
+        cleanedContent = cleanedContent.replace(/^```json\n?/, '');
+      }
+      if (cleanedContent.startsWith('```')) {
+        cleanedContent = cleanedContent.replace(/^```\n?/, '');
+      }
+      if (cleanedContent.endsWith('```')) {
+        cleanedContent = cleanedContent.replace(/\n?```$/, '');
+      }
+      
+      console.log('Cleaned content:', cleanedContent);
+      
+      analysisResult = JSON.parse(cleanedContent);
     } catch (parseError) {
       console.error('Failed to parse AI response as JSON:', parseError);
+      console.error('Raw content was:', rawContent);
+      
       // Fallback response if JSON parsing fails
       analysisResult = {
-        intentSummary: data.choices[0].message.content.substring(0, 200) + "...",
+        intentSummary: "Analysis could not be completed due to response formatting issues. Please try again.",
         contradictions: [{
           type: "analysis_error",
           severity: "low",
