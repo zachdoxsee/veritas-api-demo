@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
@@ -130,7 +131,7 @@ const Index = () => {
       <div className="relative z-10">
         <Header />
         
-        <main className="max-w-5xl mx-auto px-6 py-8">
+        <main className="max-w-5xl mx-auto px-6 py-4">
           {!analyzedData ? (
             <div className="space-y-8">
               <div className="text-center py-8">
