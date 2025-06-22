@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
@@ -93,15 +94,15 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Background with American Flag motif */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-red-50/20"></div>
+      {/* Background with American Flag motif - reduced opacity to not compete with image */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 via-blue-50/20 to-red-50/10"></div>
       
-      {/* Civic plaza background image with enhanced visibility */}
-      <div className="absolute inset-0 opacity-[0.3]">
+      {/* Civic plaza background image with MAXIMUM visibility for testing */}
+      <div className="absolute inset-0 opacity-100">
         <img 
           src="/lovable-uploads/caa95dd5-1806-4c0b-9c02-a5d20eb73b89.png"
           alt="Civic plaza"
-          className="w-full h-full object-cover filter grayscale-[0.2] saturate-125"
+          className="w-full h-full object-cover"
         />
       </div>
       
