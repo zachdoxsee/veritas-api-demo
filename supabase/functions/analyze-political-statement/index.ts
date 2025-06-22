@@ -9,6 +9,26 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Whitelist of trusted URL patterns that we know work
+const TRUSTED_URL_PATTERNS = [
+  /^https:\/\/www\.congress\.gov\/bill\/\d+th-congress\/(house|senate)-bill\/\d+/,
+  /^https:\/\/www\.senate\.gov\/legislative\/LIS\/roll_call_votes\//,
+  /^https:\/\/clerk\.house\.gov\/Votes\//,
+  /^https:\/\/www\.opensecrets\.org\/members-of-congress\//,
+  /^https:\/\/www\.fec\.gov\//,
+  /^https:\/\/ballotpedia\.org\//,
+];
+
+const validateUrl = (url: string): boolean => {
+  if (!url) return false;
+  try {
+    new URL(url); // Basic URL validation
+    return TRUSTED_URL_PATTERNS.some(pattern => pattern.test(url));
+  } catch {
+    return false;
+  }
+};
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -49,12 +69,22 @@ Please provide a comprehensive analysis in the following JSON format (respond wi
     {
       "title": "Title of evidence",
       "description": "Description of the evidence",
-      "url": "https://example.com/evidence" | null,
-      "source": "Source name"
+      "url": null,
+      "source": "Source name (e.g., 'Congress.gov', 'OpenSecrets.org', 'Senate.gov')"
     }
   ],
   "methodology": "Brief explanation of analysis methodology used"
 }
+
+IMPORTANT INSTRUCTIONS FOR URLs:
+- For supportingEvidence, ALWAYS set "url" to null unless you are absolutely certain about a specific, well-known government URL
+- Do NOT fabricate or guess URLs - they must be real and working
+- Focus on providing detailed descriptions and authoritative source names instead of URLs
+- Only include URLs if they follow these exact patterns:
+  * Congress.gov bill pages: https://www.congress.gov/bill/[congress]th-congress/[chamber]-bill/[number]
+  * Senate vote records: https://www.senate.gov/legislative/LIS/roll_call_votes/...
+  * OpenSecrets member pages: https://www.opensecrets.org/members-of-congress/...
+- If unsure about a URL, set it to null and provide a strong source name and description
 
 Focus on:
 1. Voting record inconsistencies
@@ -76,7 +106,7 @@ IMPORTANT: Respond with ONLY the JSON object, no markdown code blocks or additio
       body: JSON.stringify({
         model: 'gpt-4o-mini',
         messages: [
-          { role: 'system', content: 'You are an expert political analyst and fact-checker. You must respond with valid JSON only, no markdown formatting or code blocks.' },
+          { role: 'system', content: 'You are an expert political analyst and fact-checker. You must respond with valid JSON only, no markdown formatting or code blocks. Never fabricate URLs - set them to null if uncertain.' },
           { role: 'user', content: prompt }
         ],
         temperature: 0.3,
@@ -113,6 +143,15 @@ IMPORTANT: Respond with ONLY the JSON object, no markdown code blocks or additio
       console.log('Cleaned content:', cleanedContent);
       
       analysisResult = JSON.parse(cleanedContent);
+      
+      // Validate and filter URLs in supporting evidence
+      if (analysisResult.supportingEvidence) {
+        analysisResult.supportingEvidence = analysisResult.supportingEvidence.map((evidence: any) => ({
+          ...evidence,
+          url: evidence.url && validateUrl(evidence.url) ? evidence.url : null
+        }));
+      }
+      
     } catch (parseError) {
       console.error('Failed to parse AI response as JSON:', parseError);
       console.error('Raw content was:', rawContent);

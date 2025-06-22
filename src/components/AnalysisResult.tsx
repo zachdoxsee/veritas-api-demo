@@ -220,70 +220,53 @@ const AnalysisResult = ({ statement, speaker, date, aiAnalysis }: AnalysisResult
           {aiAnalysis?.supportingEvidence && aiAnalysis.supportingEvidence.length > 0 ? (
             aiAnalysis.supportingEvidence.map((evidence, index) => (
               <div key={index} className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-blue-200 hover:bg-blue-50 transition-colors">
-                <ExternalLink className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <FileText className="w-4 h-4 text-blue-600 flex-shrink-0" />
                 <div className="flex-1">
                   {evidence.url ? (
                     <a 
                       href={evidence.url} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-blue-700 font-medium hover:text-blue-900 hover:underline transition-colors"
+                      className="text-blue-700 font-medium hover:text-blue-900 hover:underline transition-colors flex items-center"
                     >
                       {evidence.title}
+                      <ExternalLink className="w-3 h-3 ml-1" />
                     </a>
                   ) : (
-                    <span className="text-blue-700 font-medium">{evidence.title}</span>
+                    <span className="text-slate-900 font-medium">{evidence.title}</span>
                   )}
                   <p className="text-slate-600 text-sm">{evidence.description}</p>
-                  <p className="text-slate-500 text-xs mt-1">Source: {evidence.source}</p>
+                  <p className="text-slate-500 text-xs mt-1 font-medium">Source: {evidence.source}</p>
                 </div>
               </div>
             ))
           ) : isDemo ? (
-            // Demo evidence with realistic URLs
+            // Demo evidence - no URLs since they would be fake
             <>
-              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg hover:bg-blue-50 transition-colors border border-blue-200">
-                <ExternalLink className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-blue-200">
+                <FileText className="w-4 h-4 text-blue-600 flex-shrink-0" />
                 <div className="flex-1">
-                  <a 
-                    href="https://www.congress.gov/bill/116th-congress/house-bill/3" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-blue-700 font-medium hover:text-blue-900 hover:underline transition-colors"
-                  >
-                    H.R. 3 - Lower Drug Costs Now Act (2019)
-                  </a>
-                  <p className="text-slate-600 text-sm">Congress.gov - Voted NAY on December 12, 2019</p>
+                  <span className="text-slate-900 font-medium">H.R. 3 - Lower Drug Costs Now Act (2019)</span>
+                  <p className="text-slate-600 text-sm">Voting record shows opposition to Medicare drug price negotiation legislation</p>
+                  <p className="text-slate-500 text-xs mt-1 font-medium">Source: Congress.gov</p>
                 </div>
               </div>
               
-              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg hover:bg-blue-50 transition-colors border border-blue-200">
-                <ExternalLink className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-blue-200">
+                <FileText className="w-4 h-4 text-blue-600 flex-shrink-0" />
                 <div className="flex-1">
-                  <a 
-                    href="https://www.opensecrets.org/members-of-congress/rick-scott/summary?cid=N00043290" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-blue-700 font-medium hover:text-blue-900 hover:underline transition-colors"
-                  >
-                    Pharmaceutical Industry Contributions: $186,000 (2018-2024)
-                  </a>
-                  <p className="text-slate-600 text-sm">OpenSecrets.org - Top contributors: Pfizer Inc, Johnson & Johnson, PhRMA</p>
+                  <span className="text-slate-900 font-medium">Pharmaceutical Industry Campaign Contributions</span>
+                  <p className="text-slate-600 text-sm">Financial contributions from pharmaceutical companies and PACs documented</p>
+                  <p className="text-slate-500 text-xs mt-1 font-medium">Source: OpenSecrets.org</p>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg hover:bg-blue-50 transition-colors border border-blue-200">
-                <ExternalLink className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-blue-200">
+                <FileText className="w-4 h-4 text-blue-600 flex-shrink-0" />
                 <div className="flex-1">
-                  <a 
-                    href="https://www.senate.gov/legislative/LIS/roll_call_votes/vote1172/vote_117_2_00267.htm" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-blue-700 font-medium hover:text-blue-900 hover:underline transition-colors"
-                  >
-                    S. 4 - Prescription Drug Pricing Reduction Act (2021)
-                  </a>
-                  <p className="text-slate-600 text-sm">Senate.gov - Voted NAY on August 10, 2021</p>
+                  <span className="text-slate-900 font-medium">S. 4 - Prescription Drug Pricing Reduction Act (2021)</span>
+                  <p className="text-slate-600 text-sm">Senate voting record on drug pricing legislation</p>
+                  <p className="text-slate-500 text-xs mt-1 font-medium">Source: Senate.gov</p>
                 </div>
               </div>
             </>
