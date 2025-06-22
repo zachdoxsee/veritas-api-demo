@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
 import AnalysisResult from '@/components/AnalysisResult';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 interface AnalysisData {
   statement: string;
@@ -11,20 +13,82 @@ interface AnalysisData {
   source: 'text' | 'file';
 }
 
+interface AIAnalysisResult {
+  intentSummary: string;
+  contradictions: Array<{
+    type: string;
+    severity: 'high' | 'medium' | 'low';
+    title: string;
+    description: string;
+    evidence: string;
+  }>;
+  overallAssessment: {
+    hasContradictions: boolean;
+    confidenceLevel: 'high' | 'medium' | 'low';
+    confidencePercentage: number;
+    summary: string;
+  };
+  supportingEvidence: Array<{
+    title: string;
+    description: string;
+    url: string | null;
+    source: string;
+  }>;
+  methodology: string;
+}
+
 const Index = () => {
   const [analyzedData, setAnalyzedData] = useState<AnalysisData | null>(null);
+  const [aiAnalysis, setAiAnalysis] = useState<AIAnalysisResult | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const { toast } = useToast();
 
   const handleAnalyze = async (data: AnalysisData) => {
     setIsAnalyzing(true);
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 2500));
-    setAnalyzedData(data);
-    setIsAnalyzing(false);
+    
+    try {
+      console.log('Starting analysis for:', data);
+      
+      const { data: result, error } = await supabase.functions.invoke('analyze-political-statement', {
+        body: {
+          statement: data.statement,
+          speaker: data.speaker,
+          date: data.date
+        }
+      });
+
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw new Error(`Analysis failed: ${error.message}`);
+      }
+
+      if (result.error) {
+        throw new Error(result.message || 'Analysis failed');
+      }
+
+      console.log('Analysis result:', result);
+      setAiAnalysis(result);
+      setAnalyzedData(data);
+      
+      toast({
+        title: "Analysis Complete",
+        description: "Political statement has been analyzed successfully.",
+      });
+    } catch (error) {
+      console.error('Error during analysis:', error);
+      toast({
+        title: "Analysis Failed",
+        description: error instanceof Error ? error.message : "Failed to analyze statement. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsAnalyzing(false);
+    }
   };
 
   const handleNewAnalysis = () => {
     setAnalyzedData(null);
+    setAiAnalysis(null);
   };
 
   return (
@@ -76,11 +140,11 @@ const Index = () => {
                 <div className="mt-6 flex items-center justify-center space-x-8 text-sm text-slate-500">
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <span>ProPublica Congress API</span>
+                    <span>AI-Powered Analysis</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                    <span>OpenSecrets Database</span>
+                    <span>Real-time Processing</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
@@ -100,8 +164,8 @@ const Index = () => {
                       <div className="absolute inset-0 animate-ping rounded-full h-8 w-8 border border-blue-400 opacity-25"></div>
                     </div>
                     <div className="text-slate-700">
-                      <div className="font-medium">Analyzing statement...</div>
-                      <div className="text-sm text-slate-500">Cross-referencing voting records, donations, and past statements</div>
+                      <div className="font-medium">Analyzing statement with AI...</div>
+                      <div className="text-sm text-slate-500">Cross-referencing patterns, detecting contradictions</div>
                     </div>
                   </div>
                 </div>
@@ -128,6 +192,7 @@ const Index = () => {
                 statement={analyzedData.statement} 
                 speaker={analyzedData.speaker}
                 date={analyzedData.date}
+                aiAnalysis={aiAnalysis}
               />
             </div>
           )}
@@ -144,15 +209,15 @@ const Index = () => {
                 <h3 className="text-xl font-bold text-white">Veritas</h3>
               </div>
               <p className="text-slate-300 font-medium">
-                Political Accountability & Fact-Checking Platform
+                AI-Powered Political Accountability Platform
               </p>
               <div className="max-w-2xl mx-auto text-sm leading-relaxed">
                 <p className="mb-2">
-                  <strong className="text-slate-200">Prototype Demonstration</strong> - Real-time political statement verification
+                  <strong className="text-slate-200">Live AI Analysis</strong> - Real-time political statement verification
                 </p>
                 <p>
-                  Powered by: ProPublica Congress API • OpenSecrets Campaign Finance Database • 
-                  Verified Social Media Archives • Public Records Database
+                  Powered by: OpenAI GPT-4 • Advanced Pattern Recognition • 
+                  Political Database Cross-Reference • Contradiction Detection
                 </p>
               </div>
               <div className="pt-4 border-t border-slate-700">

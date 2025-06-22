@@ -1,1 +1,5 @@
+
 project_id = "vnowqhgufhbeccdlctxm"
+
+[functions.analyze-political-statement]
+verify_jwt = false
