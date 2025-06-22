@@ -96,6 +96,15 @@ const Index = () => {
       {/* Background with American Flag motif */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-red-50/20"></div>
       
+      {/* Government courthouse background image */}
+      <div className="absolute inset-0 opacity-5">
+        <img 
+          src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=6000&q=80"
+          alt="Government courthouse"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      
       {/* Courthouse/Justice themed background elements */}
       <div className="absolute top-20 right-10 w-64 h-64 opacity-[0.03]">
         <svg viewBox="0 0 24 24" className="w-full h-full text-slate-800">
