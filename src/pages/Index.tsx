@@ -122,11 +122,11 @@ const Index = () => {
             <div className="space-y-8">
               <div className="text-center mt-4">
                 <div className="relative inline-block">
-                  <h2 className="text-4xl font-bold text-slate-900 mb-4 relative z-10">
-                    Political Statement Verification
+                  <h2 className="text-4xl font-bold text-slate-900 mb-4 relative z-10 font-playfair">
+                    Political Accountability in Real-Time
                   </h2>
                 </div>
-                <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed mb-8">
+                <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed mb-8 font-inter">
                   Cross-reference political statements with voting records, campaign finance data, and past positions 
                   to detect contradictions, hypocrisy, and verify consistency in political rhetoric.
                 </p>
@@ -143,8 +143,8 @@ const Index = () => {
                       <div className="absolute inset-0 animate-ping rounded-full h-8 w-8 border border-blue-400 opacity-25"></div>
                     </div>
                     <div className="text-slate-700">
-                      <div className="font-medium">Analyzing statement with AI...</div>
-                      <div className="text-sm text-slate-500">Cross-referencing patterns, detecting contradictions</div>
+                      <div className="font-medium font-inter">Analyzing statement with AI...</div>
+                      <div className="text-sm text-slate-500 font-inter">Cross-referencing patterns, detecting contradictions</div>
                     </div>
                   </div>
                 </div>
@@ -154,14 +154,14 @@ const Index = () => {
             <div className="space-y-6">
               <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                 <div className="text-center sm:text-left">
-                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Analysis Complete</h2>
-                  <p className="text-slate-600 mt-1 text-sm sm:text-base">
+                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900 font-playfair">Analysis Complete</h2>
+                  <p className="text-slate-600 mt-1 text-sm sm:text-base font-inter">
                     Analyzed statement by {analyzedData.speaker} • {analyzedData.date}
                   </p>
                 </div>
                 <button
                   onClick={handleNewAnalysis}
-                  className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                  className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 font-inter"
                 >
                   New Analysis
                 </button>
@@ -180,7 +180,7 @@ const Index = () => {
         {/* Simple AI Disclaimer */}
         <div className="max-w-5xl mx-auto px-6 py-6">
           <div className="bg-amber-50/80 backdrop-blur-sm border border-amber-200 rounded-lg p-3 text-center">
-            <p className="text-sm text-amber-800 flex items-center justify-center space-x-2">
+            <p className="text-sm text-amber-800 flex items-center justify-center space-x-2 font-inter">
               <AlertTriangle className="w-4 h-4" />
               <span>AI analysis results should be independently verified and are subject to inherent limitations and biases.</span>
             </p>
@@ -191,11 +191,11 @@ const Index = () => {
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center space-y-4">
-              <h3 className="text-xl font-bold text-white">Veritas</h3>
-              <p className="text-slate-300 font-medium">
+              <h3 className="text-xl font-bold text-white font-playfair">Veritas</h3>
+              <p className="text-slate-300 font-medium font-inter">
                 AI-Powered Political Accountability Platform
               </p>
-              <div className="max-w-2xl mx-auto text-sm leading-relaxed">
+              <div className="max-w-2xl mx-auto text-sm leading-relaxed font-inter">
                 <p className="mb-2">
                   <strong className="text-slate-200">Live AI Analysis</strong> - Real-time political statement verification
                 </p>
@@ -205,10 +205,10 @@ const Index = () => {
                 </p>
               </div>
               <div className="pt-4 border-t border-slate-700">
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-500 font-inter">
                   Built for journalists, researchers, and citizens seeking political transparency
                 </p>
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-xs text-slate-500 mt-1 font-inter">
                   Created by Zach Doxsee
                 </p>
               </div>
