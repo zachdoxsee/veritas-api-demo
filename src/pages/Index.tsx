@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
@@ -96,12 +97,12 @@ const Index = () => {
       {/* Background with American Flag motif */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-red-50/20"></div>
       
-      {/* Government courthouse background image */}
-      <div className="absolute inset-0 opacity-5">
+      {/* Civic plaza background image with subtle styling */}
+      <div className="absolute inset-0 opacity-[0.06]">
         <img 
-          src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=6000&q=80"
-          alt="Government courthouse"
-          className="w-full h-full object-cover"
+          src="/lovable-uploads/caa95dd5-1806-4c0b-9c02-a5d20eb73b89.png"
+          alt="Civic plaza"
+          className="w-full h-full object-cover filter grayscale-[0.8] saturate-50 backdrop-blur-sm"
         />
       </div>
       
