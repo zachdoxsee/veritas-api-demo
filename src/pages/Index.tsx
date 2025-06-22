@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
@@ -122,8 +120,8 @@ const Index = () => {
             <div className="space-y-8">
               <div className="text-center mt-4">
                 <div className="relative inline-block">
-                  <h2 className="text-4xl font-bold text-slate-900 mb-4 relative z-10 font-playfair">
-                    Political Accountability in Real-Time
+                  <h2 className="text-4xl font-bold text-slate-900 mb-4 relative z-10 font-inter">
+                    Political Statement Analysis
                   </h2>
                 </div>
                 <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed mb-8 font-inter">
@@ -154,7 +152,7 @@ const Index = () => {
             <div className="space-y-6">
               <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                 <div className="text-center sm:text-left">
-                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900 font-playfair">Analysis Complete</h2>
+                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900 font-inter">Analysis Complete</h2>
                   <p className="text-slate-600 mt-1 text-sm sm:text-base font-inter">
                     Analyzed statement by {analyzedData.speaker} • {analyzedData.date}
                   </p>
@@ -191,7 +189,7 @@ const Index = () => {
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
           <div className="max-w-5xl mx-auto px-6">
             <div className="text-center space-y-4">
-              <h3 className="text-xl font-bold text-white font-playfair">Veritas</h3>
+              <h3 className="text-xl font-bold text-white font-inter">Veritas</h3>
               <p className="text-slate-300 font-medium font-inter">
                 AI-Powered Political Accountability Platform
               </p>
@@ -221,4 +219,3 @@ const Index = () => {
 };
 
 export default Index;
-
