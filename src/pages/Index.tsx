@@ -165,16 +165,16 @@ const Index = () => {
             </div>
           ) : (
             <div className="space-y-6">
-              <div className="flex items-center justify-between bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-                <div>
-                  <h2 className="text-2xl font-bold text-slate-900">Analysis Complete</h2>
-                  <p className="text-slate-600 mt-1">
+              <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+                <div className="text-center sm:text-left">
+                  <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Analysis Complete</h2>
+                  <p className="text-slate-600 mt-1 text-sm sm:text-base">
                     Analyzed statement by {analyzedData.speaker} • {analyzedData.date}
                   </p>
                 </div>
                 <button
                   onClick={handleNewAnalysis}
-                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                  className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
                 >
                   New Analysis
                 </button>
