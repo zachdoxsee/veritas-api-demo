@@ -140,24 +140,10 @@ const Index = () => {
                   </h2>
                   <div className="absolute -bottom-2 -right-2 w-3 h-3 bg-red-600 rounded-full opacity-20"></div>
                 </div>
-                <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed">
+                <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed mb-8">
                   Cross-reference political statements with voting records, campaign finance data, and past positions 
                   to detect contradictions, hypocrisy, and verify consistency in political rhetoric.
                 </p>
-                <div className="mt-6 flex items-center justify-center space-x-8 text-sm text-slate-500">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <span>AI-Powered Analysis</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                    <span>Real-time Processing</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                    <span>Verified Sources</span>
-                  </div>
-                </div>
               </div>
               
               <StatementInput onAnalyze={handleAnalyze} isAnalyzing={isAnalyzing} />
