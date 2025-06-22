@@ -116,16 +116,16 @@ const Index = () => {
       <div className="relative z-10">
         <Header />
         
-        <main className="max-w-5xl mx-auto px-6 pt-6">
+        <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-6">
           {!analyzedData ? (
             <div className="space-y-8">
               <div className="text-center mt-4">
                 <div className="relative inline-block">
-                  <h2 className="text-4xl font-bold text-slate-900 mb-4 relative z-10 font-inter">
+                  <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 mb-2 sm:mb-4 relative z-10 font-inter leading-tight">
                     Political Statement Analysis
                   </h2>
                 </div>
-                <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed mb-8 font-inter">
+                <p className="text-base sm:text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 font-inter">
                   Cross-reference political statements with voting records, campaign finance data, and past positions 
                   to detect contradictions, hypocrisy, and verify consistency in political rhetoric.
                 </p>
@@ -177,7 +177,7 @@ const Index = () => {
         </main>
         
         {/* Simple AI Disclaimer */}
-        <div className="max-w-5xl mx-auto px-6 py-6">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6">
           <div className="bg-amber-50/80 backdrop-blur-sm border border-amber-200 rounded-lg p-3 text-center">
             <p className="text-sm text-amber-800 flex items-center justify-center space-x-2 font-inter">
               <AlertTriangle className="w-4 h-4" />
