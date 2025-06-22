@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
@@ -106,11 +107,11 @@ const Index = () => {
               <div className="text-center mt-4">
                 <div className="relative inline-block">
                   <h2 className="text-4xl sm:text-4xl font-bold text-slate-900 mb-3 sm:mb-4 relative z-10 font-inter leading-tight">
-                    Political Statement Analysis
+                    Fact-Check<br />Political Claims
                   </h2>
                 </div>
                 <p className="text-base sm:text-lg text-slate-700 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed mb-2 sm:mb-3 font-inter">
-                  Cross-reference political statements with voting records and past positions 
+                  Cross-reference political statements with voting records, donor history, and past positions 
                   to detect contradictions and verify consistency in political statements.
                 </p>
                 <Badge variant="outline" className="bg-slate-50 text-slate-600 border-slate-200 text-sm">
