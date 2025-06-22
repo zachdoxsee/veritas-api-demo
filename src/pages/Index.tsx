@@ -125,12 +125,12 @@ const Index = () => {
                     Political Statement Analysis
                   </h2>
                 </div>
-                <p className="text-base sm:text-lg text-slate-700 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed mb-4 sm:mb-6 font-inter">
+                <p className="text-base sm:text-lg text-slate-700 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed mb-2 sm:mb-3 font-inter">
                   Cross-reference political statements with voting records and past positions 
                   to detect contradictions and verify consistency in political statements.
                 </p>
-                <Badge variant="outline" className="bg-slate-50 text-slate-600 border-slate-200 text-xs">
-                  <Bot className="w-3 h-3 mr-1" />
+                <Badge variant="outline" className="bg-slate-50 text-slate-600 border-slate-200 text-sm">
+                  <Bot className="w-4 h-4 mr-1" />
                   Powered by AI
                 </Badge>
               </div>
