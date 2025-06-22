@@ -94,25 +94,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Background with American Flag motif - reduced opacity to not compete with image */}
+      {/* Background with American Flag motif - clean gradient only */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50/30 via-blue-50/10 to-red-50/5"></div>
       
-      {/* Aerial government building background image with surrounding landscape */}
-      <div className="absolute inset-0 opacity-30">
-        <img 
-          src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-          alt="Aerial view of government building with surrounding landscape"
-          className="w-full h-full object-cover grayscale-[0.8] brightness-105 contrast-95 hue-rotate-[200deg] saturate-50"
-        />
-      </div>
-      
-      {/* Constitutional/scales of justice background */}
-      <div className="absolute bottom-20 left-10 w-48 h-48 opacity-[0.02]">
-        <svg viewBox="0 0 24 24" className="w-full h-full text-blue-800">
-          <path fill="currentColor" d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L12 1L3 7V9C3 10.1 3.9 11 5 11V22H19V11C20.1 11 21 10.1 21 9ZM7 13V19H9V13H7ZM11 13V19H13V13H11ZM15 13V19H17V13H15Z"/>
-        </svg>
-      </div>
-
       <div className="relative z-10">
         <Header />
         
@@ -121,7 +105,7 @@ const Index = () => {
             <div className="space-y-8">
               <div className="text-center mt-4">
                 <div className="relative inline-block">
-                  <h2 className="text-3xl sm:text-4xl font-extrabold sm:font-bold text-slate-900 mb-3 sm:mb-4 relative z-10 font-inter leading-tight">
+                  <h2 className="text-4xl sm:text-4xl font-bold text-slate-900 mb-3 sm:mb-4 relative z-10 font-inter leading-tight">
                     Political Statement Analysis
                   </h2>
                 </div>
