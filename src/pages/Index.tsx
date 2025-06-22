@@ -132,10 +132,10 @@ const Index = () => {
       <div className="relative z-10">
         <Header />
         
-        <main className="max-w-5xl mx-auto px-6 pt-2">
+        <main className="max-w-5xl mx-auto px-6 pt-6">
           {!analyzedData ? (
             <div className="space-y-8">
-              <div className="text-center">
+              <div className="text-center mt-4">
                 <div className="relative inline-block">
                   <h2 className="text-4xl font-bold text-slate-900 mb-4 relative z-10">
                     Political Statement Verification
