@@ -21,7 +21,7 @@ const StatementInput = ({ onAnalyze, isAnalyzing }: StatementInputProps) => {
   const [inputMethod, setInputMethod] = useState<'text' | 'file'>('text');
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
-  const demoStatement = `"Big Pharma has ripped off the American people for far too long. We need to allow Medicare to negotiate drug prices and stop these outrageous price increases that force families to choose between medicine and food." - Senator Rick Scott, October 2024`;
+  const demoStatement = `"We need to allow Medicare to negotiate prescription drug prices to bring down costs for seniors. Big Pharma has gotten away with price gouging for too long, and it's time to put patients over profits." - Senator Rick Scott, March 2024`;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,7 +42,7 @@ const StatementInput = ({ onAnalyze, isAnalyzing }: StatementInputProps) => {
   const useDemoStatement = () => {
     setStatement(demoStatement);
     setSpeaker('Senator Rick Scott');
-    setDate('2024-10-15');
+    setDate('2024-03-15');
     setInputMethod('text');
   };
 
@@ -172,12 +172,12 @@ const StatementInput = ({ onAnalyze, isAnalyzing }: StatementInputProps) => {
           )}
         </div>
         
-        <div className="flex items-center justify-between pt-4">
+        <div className="flex flex-col space-y-3 items-center sm:flex-row sm:space-y-0 sm:justify-between sm:items-center pt-4">
           <Button
             type="button"
             variant="outline"
             onClick={useDemoStatement}
-            className="flex items-center space-x-2 border-slate-300 hover:bg-slate-50"
+            className="flex items-center space-x-2 border-slate-300 hover:bg-slate-50 w-full sm:w-auto"
           >
             <Sparkles className="w-4 h-4" />
             <span>Try Demo Statement</span>
@@ -186,7 +186,7 @@ const StatementInput = ({ onAnalyze, isAnalyzing }: StatementInputProps) => {
           <Button
             type="submit"
             disabled={!statement.trim() || !speaker.trim() || isAnalyzing}
-            className="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-2.5"
+            className="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-2.5 w-full sm:w-auto"
           >
             <Search className="w-4 h-4" />
             <span>{isAnalyzing ? 'Analyzing...' : 'Analyze Statement'}</span>
