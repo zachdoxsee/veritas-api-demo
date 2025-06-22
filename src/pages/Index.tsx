@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import StatementInput from '@/components/StatementInput';
@@ -131,12 +132,12 @@ const Index = () => {
       <div className="relative z-10">
         <Header />
         
-        <main className="max-w-5xl mx-auto px-6 py-4">
+        <main className="max-w-5xl mx-auto px-6 pt-2">
           {!analyzedData ? (
             <div className="space-y-8">
-              <div className="text-center py-4">
+              <div className="text-center">
                 <div className="relative inline-block">
-                  <h2 className="text-4xl font-bold text-slate-900 mb-6 relative z-10">
+                  <h2 className="text-4xl font-bold text-slate-900 mb-4 relative z-10">
                     Political Statement Verification
                   </h2>
                 </div>
@@ -222,3 +223,4 @@ const Index = () => {
 };
 
 export default Index;
+
