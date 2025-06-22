@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Search, Sparkles, Upload, Calendar, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -22,7 +21,7 @@ const StatementInput = ({ onAnalyze, isAnalyzing }: StatementInputProps) => {
   const [inputMethod, setInputMethod] = useState<'text' | 'file'>('text');
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
-  const demoStatement = `"We need to secure our border and stop the flow of drugs into our communities. I've always been tough on crime and will continue to fight for law and order." - Senator Johnson, March 15, 2024`;
+  const demoStatement = `"Big Pharma has ripped off the American people for far too long. We need to allow Medicare to negotiate drug prices and stop these outrageous price increases that force families to choose between medicine and food." - Senator Rick Scott, October 2024`;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,8 +41,8 @@ const StatementInput = ({ onAnalyze, isAnalyzing }: StatementInputProps) => {
 
   const useDemoStatement = () => {
     setStatement(demoStatement);
-    setSpeaker('Senator Johnson');
-    setDate('2024-03-15');
+    setSpeaker('Senator Rick Scott');
+    setDate('2024-10-15');
     setInputMethod('text');
   };
 

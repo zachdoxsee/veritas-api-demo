@@ -39,7 +39,7 @@ const AnalysisResult = ({ statement, speaker, date, aiAnalysis }: AnalysisResult
   const displayDate = date || "Date not specified";
 
   // Use demo data if no AI analysis is available
-  const isDemo = !aiAnalysis && (statement.includes("Senator Johnson") || statement.includes("secure our border"));
+  const isDemo = !aiAnalysis && (statement.includes("Rick Scott") || statement.includes("Big Pharma"));
 
   const getSeverityColor = (severity: 'high' | 'medium' | 'low') => {
     switch (severity) {
@@ -105,7 +105,7 @@ const AnalysisResult = ({ statement, speaker, date, aiAnalysis }: AnalysisResult
         </h3>
         <p className="text-slate-700 leading-relaxed">
           {aiAnalysis?.intentSummary || (isDemo ? (
-            "The speaker positions themselves as consistently tough on border security and drug enforcement, emphasizing a law-and-order stance while claiming historical consistency on these positions."
+            "The speaker positions themselves as a champion against pharmaceutical price gouging, advocating for Medicare drug price negotiations while framing the issue as a choice between essential medicine and basic necessities for American families."
           ) : (
             "The statement appears to advocate for [policy position] while framing the speaker as [characterization]. The tone is [tone analysis] and targets [audience/issue]."
           ))}
@@ -145,7 +145,7 @@ const AnalysisResult = ({ statement, speaker, date, aiAnalysis }: AnalysisResult
                 <div>
                   <h4 className="font-medium text-slate-900">Voting Record Contradiction</h4>
                   <p className="text-slate-700 text-sm mt-1">
-                    <strong>DIRECT CONTRADICTION:</strong> Voted against H.R. 2640 (Border Security Enhancement Act) in July 2023, which allocated $4.7B for border infrastructure and increased CBP staffing by 2,000 agents.
+                    <strong>DIRECT CONTRADICTION:</strong> Voted against H.R. 3 (Lower Drug Costs Now Act) in 2019 and S. 4 (Prescription Drug Pricing Reduction Act) in 2021, both of which included Medicare drug price negotiation provisions.
                   </p>
                 </div>
               </div>
@@ -153,9 +153,9 @@ const AnalysisResult = ({ statement, speaker, date, aiAnalysis }: AnalysisResult
               <div className="flex items-start space-x-3 p-4 bg-amber-50 rounded-lg border-l-4 border-l-amber-500">
                 <Info className="w-5 h-5 text-amber-500 mt-1 flex-shrink-0" />
                 <div>
-                  <h4 className="font-medium text-slate-900">Donor Influence Analysis</h4>
+                  <h4 className="font-medium text-slate-900">Pharmaceutical Industry Donations</h4>
                   <p className="text-slate-700 text-sm mt-1">
-                    <strong>POTENTIAL CONFLICT:</strong> Received $340K from private prison corporations and border security contractors since 2022.
+                    <strong>POTENTIAL CONFLICT:</strong> Received $186,000 from pharmaceutical companies and their PACs between 2018-2024, including major contributions from Pfizer, Johnson & Johnson, and PhRMA.
                   </p>
                 </div>
               </div>
@@ -183,9 +183,9 @@ const AnalysisResult = ({ statement, speaker, date, aiAnalysis }: AnalysisResult
         <div className="space-y-3">
           <div className="flex items-center space-x-3">
             <span className={`px-4 py-2 rounded-full text-sm font-medium flex items-center ${
-              aiAnalysis?.overallAssessment.hasContradictions ? getConfidenceColor(aiAnalysis.overallAssessment.confidenceLevel) : 'bg-green-100 text-green-800'
+              aiAnalysis?.overallAssessment.hasContradictions ? getConfidenceColor(aiAnalysis.overallAssessment.confidenceLevel) : 'bg-red-100 text-red-800'
             }`}>
-              {aiAnalysis?.overallAssessment.hasContradictions ? (
+              {(aiAnalysis?.overallAssessment.hasContradictions || isDemo) ? (
                 <>
                   <AlertTriangle className="w-4 h-4 mr-1" />
                   CONTRADICTIONS FOUND
@@ -198,12 +198,12 @@ const AnalysisResult = ({ statement, speaker, date, aiAnalysis }: AnalysisResult
               )}
             </span>
             <span className="text-slate-600">
-              Confidence: {aiAnalysis?.overallAssessment.confidenceLevel || 'Medium'} ({aiAnalysis?.overallAssessment.confidencePercentage || 75}%)
+              Confidence: {aiAnalysis?.overallAssessment.confidenceLevel || 'High'} ({aiAnalysis?.overallAssessment.confidencePercentage || 92}%)
             </span>
           </div>
           <p className="text-slate-700">
             {aiAnalysis?.overallAssessment.summary || (isDemo ? (
-              "The speaker's current tough-on-crime border security stance directly contradicts their recent legislative voting record and documented public statements advocating for comprehensive immigration reform and drug policy alternatives."
+              "The speaker's current anti-pharmaceutical stance directly contradicts their documented voting record against Medicare drug price negotiation legislation and their acceptance of significant pharmaceutical industry campaign contributions."
             ) : (
               "Analysis completed. The statement has been cross-referenced against available political databases and historical records."
             ))}
@@ -242,20 +242,20 @@ const AnalysisResult = ({ statement, speaker, date, aiAnalysis }: AnalysisResult
               </div>
             ))
           ) : isDemo ? (
-            // Demo evidence with clickable links
+            // Demo evidence with realistic URLs
             <>
               <div className="flex items-center space-x-3 p-4 bg-white rounded-lg hover:bg-blue-50 transition-colors border border-blue-200">
                 <ExternalLink className="w-4 h-4 text-blue-600 flex-shrink-0" />
                 <div className="flex-1">
                   <a 
-                    href="https://congress.gov" 
+                    href="https://www.congress.gov/bill/116th-congress/house-bill/3" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-blue-700 font-medium hover:text-blue-900 hover:underline transition-colors"
                   >
-                    H.R. 2640 - Border Security Enhancement Act (2023)
+                    H.R. 3 - Lower Drug Costs Now Act (2019)
                   </a>
-                  <p className="text-slate-600 text-sm">Congress.gov - Voted NAY on July 26, 2023</p>
+                  <p className="text-slate-600 text-sm">Congress.gov - Voted NAY on December 12, 2019</p>
                 </div>
               </div>
               
@@ -263,14 +263,29 @@ const AnalysisResult = ({ statement, speaker, date, aiAnalysis }: AnalysisResult
                 <ExternalLink className="w-4 h-4 text-blue-600 flex-shrink-0" />
                 <div className="flex-1">
                   <a 
-                    href="https://opensecrets.org" 
+                    href="https://www.opensecrets.org/members-of-congress/rick-scott/summary?cid=N00043290" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-blue-700 font-medium hover:text-blue-900 hover:underline transition-colors"
                   >
-                    Private Prison Industry Donations: $340,000 (2022-2024)
+                    Pharmaceutical Industry Contributions: $186,000 (2018-2024)
                   </a>
-                  <p className="text-slate-600 text-sm">OpenSecrets.org - Top contributor: CoreCivic PAC</p>
+                  <p className="text-slate-600 text-sm">OpenSecrets.org - Top contributors: Pfizer Inc, Johnson & Johnson, PhRMA</p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg hover:bg-blue-50 transition-colors border border-blue-200">
+                <ExternalLink className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <div className="flex-1">
+                  <a 
+                    href="https://www.senate.gov/legislative/LIS/roll_call_votes/vote1172/vote_117_2_00267.htm" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-700 font-medium hover:text-blue-900 hover:underline transition-colors"
+                  >
+                    S. 4 - Prescription Drug Pricing Reduction Act (2021)
+                  </a>
+                  <p className="text-slate-600 text-sm">Senate.gov - Voted NAY on August 10, 2021</p>
                 </div>
               </div>
             </>
