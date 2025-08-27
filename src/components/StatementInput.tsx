@@ -145,29 +145,14 @@ const StatementInput = ({ onAnalyze, isAnalyzing }: StatementInputProps) => {
               required
             />
           ) : (
-            <div className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors">
+            <div className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center">
               <Upload className="w-8 h-8 text-slate-400 mx-auto mb-3" />
-              <input
-                type="file"
-                onChange={handleFileUpload}
-                accept=".txt,.pdf,.doc,.docx,image/*"
-                className="hidden"
-                id="file-upload"
-              />
-              <Label htmlFor="file-upload" className="cursor-pointer">
-                <span className="text-blue-600 hover:text-blue-700 font-medium">
-                  Click to upload
-                </span>
-                <span className="text-slate-600"> or drag and drop</span>
-              </Label>
-              <p className="text-xs text-slate-500 mt-2">
-                Supports text files, PDFs, documents, and images
+              <div className="text-slate-600 font-medium text-lg mb-2">
+                Coming Soon
+              </div>
+              <p className="text-sm text-slate-500">
+                File upload functionality will be available soon
               </p>
-              {uploadedFile && (
-                <p className="text-sm text-green-600 mt-2">
-                  ✓ {uploadedFile.name}
-                </p>
-              )}
             </div>
           )}
         </div>
